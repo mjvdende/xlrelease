@@ -8,3 +8,6 @@ docker run \
     --name=xlrelease \
     mjvdende/xlrelease:${XLR_VERSION}
 ```
+
+
+default username: admin password: password
