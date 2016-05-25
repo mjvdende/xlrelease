@@ -10,7 +10,6 @@ ENV XLRELEASE_FILE=https://dist.xebialabs.com/public/trial/xl-release/${XLRELEAS
 
 RUN curl -O ${XLRELEASE_FILE}
 RUN unzip ${XLRELEASE}.zip
-RUN rm ${XLRELEASE}.zip 
 
 ADD xlrelease.answers xlrelease.answers
 ADD xlrelease.sh xlrelease.sh
