@@ -1,16 +1,21 @@
-FROM java:openjdk-8-jdk
+FROM maven:3.3.3-jdk-8
 MAINTAINER Maarten van den Ende <mvandenende@xebia.com>
 
-ENV version 5.0.0
 RUN apt-get update
-RUN apt-get install -y unzip wget
+RUN apt-get install -y unzip curl wget
 
-RUN wget https://dist.xebialabs.com/public/trial/xl-release/xl-release-${version}-server.zip -O /tmp/xlr.zip && unzip /tmp/xlr.zip -d /opt && rm /tmp/xlr.zip
-ADD xlrelease.answers /opt/xl-release-${version}-server/bin/xlrelease.answers
+ENV VERSION 5.0.0
+ENV XLRELEASE_FILE=xl-release-${VERSION}-server
+ENV XLRELEASE=https://dist.xebialabs.com/public/trial/xl-release/${XLRELEASE_FILE}.zip
 
-WORKDIR /opt/xl-release-${version}-server/bin
-RUN ["./server.sh", "-setup", "-reinitialize", "-force", "-setup-defaults", "./bin/xlrelease.answers"]
+RUN curl -O ${XLRELEASE}
+RUN unzip ${XLRELEASE_FILE}.zip
+RUN rm ${XLRELEASE_FILE}.zip
 
-EXPOSE 4516
+ADD xlrelease.answers xlrelease.answers
+ADD xlrelease.sh xlrelease.sh
+
+RUN mkdir xl-server
+VOLUME /xl-server
 EXPOSE 5516
-CMD ["./server.sh"]
+CMD ["./xlrelease.sh"]
