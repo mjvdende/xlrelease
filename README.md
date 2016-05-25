@@ -3,11 +3,13 @@
 ```
 XLR_VERSION=5.0.0
 docker run \
-    -p 80:5516 \
-    -v /data/xlrelease:/opt/xl-release-${XLR_VERSION}-server \
+    -p 5516:5516 \
+    -v /data/xlrelease:/xl-server \
     --name=xlrelease \
     mjvdende/xlrelease:${XLR_VERSION}
 ```
 
 
-default username: admin password: password
+### default username and password
+    username: admin
+    password: password
