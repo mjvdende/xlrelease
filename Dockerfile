@@ -4,7 +4,7 @@ MAINTAINER Maarten van den Ende <mvandenende@xebia.com>
 RUN apt-get update
 RUN apt-get install -y unzip curl wget
 
-ENV VERSION 5.0.0
+ENV VERSION 6.0.0
 ENV XLRELEASE=xl-release-${VERSION}-server
 ENV XLRELEASE_FILE=https://dist.xebialabs.com/public/trial/xl-release/${XLRELEASE}.zip
 
